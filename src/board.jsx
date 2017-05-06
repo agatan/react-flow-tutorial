@@ -5,14 +5,29 @@ import {Square} from './square';
 
 type Props = {};
 
-type State = {};
+type State = {
+  squares: Array<string | null>
+};
 
 export class Board extends Component<void, Props, State> {
   state: State;
 
+  constructor() {
+    super();
+    this.state = {
+      squares: Array(9).fill(null),
+    };
+  }
+
+  handleClickSquare(i: number) {
+    const squares = this.state.squares.slice();
+    squares[i] = 'X';
+    this.setState({squares: squares});
+  }
+
   renderSquare(i: number) {
     return (
-      <Square />
+      <Square value={this.state.squares[i]} onClick={() => this.handleClickSquare(i)} />
     );
   }
 
