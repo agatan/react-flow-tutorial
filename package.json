@@ -4,7 +4,8 @@
   "scripts": {
     "build": "webpack",
     "flow": "flow",
-    "flow-typed": "flow-typed install"
+    "flow-typed": "flow-typed install",
+    "start": "webpack-dev-server"
   },
   "license": "MIT",
   "devDependencies": {
@@ -14,7 +15,8 @@
     "babel-preset-react": "^6.24.1",
     "flow-bin": "^0.45.0",
     "flow-typed": "^2.1.2",
-    "webpack": "^2.5.0"
+    "webpack": "^2.5.0",
+    "webpack-dev-server": "^2.4.5"
   },
   "dependencies": {
     "react": "^15.5.4",
