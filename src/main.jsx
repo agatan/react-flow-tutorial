@@ -1,8 +1,8 @@
 // @flow
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Hello} from './hello';
+import {Board} from './board';
 
 import './index.css';
 
-ReactDOM.render(<Hello content="hello world"/>, document.getElementById("app"));
+ReactDOM.render(<Board/>, document.getElementById("app"));
