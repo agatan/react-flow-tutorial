@@ -1,7 +1,11 @@
 {
   "name": "tictac",
   "version": "1.0.0",
-  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "flow": "flow",
+    "flow-typed": "flow-typed install"
+  },
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.24.1",
