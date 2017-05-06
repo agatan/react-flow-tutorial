@@ -9,6 +9,8 @@ type Props = {
 type State = {};
 
 export class Square extends Component<void, Props, State> {
+  state: State;
+
   render() {
     return (
       <button className="square" onClick={this.props.onClick}>

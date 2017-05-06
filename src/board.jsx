@@ -6,7 +6,8 @@ import {Square} from './square';
 type Props = {};
 
 type State = {
-  squares: Array<string | null>
+  squares: Array<string | null>,
+  xIsNext: bool,
 };
 
 export class Board extends Component<void, Props, State> {
@@ -16,13 +17,20 @@ export class Board extends Component<void, Props, State> {
     super();
     this.state = {
       squares: Array(9).fill(null),
+      xIsNext: true,
     };
   }
 
   handleClickSquare(i: number) {
     const squares = this.state.squares.slice();
-    squares[i] = 'X';
-    this.setState({squares: squares});
+    if (squares[i]) {
+      return;
+    }
+    squares[i] = this.state.xIsNext ? 'X' : 'O';
+    this.setState({
+      squares: squares,
+      xIsNext: !this.state.xIsNext,
+    });
   }
 
   renderSquare(i: number) {
@@ -32,7 +40,7 @@ export class Board extends Component<void, Props, State> {
   }
 
   render() {
-    const status = 'Next player: X';
+    const status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
 
     return (
       <div>
