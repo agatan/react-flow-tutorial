@@ -11,7 +11,11 @@ export class Game extends Component<void, Props, State> {
 
   render() {
     return (
-      <Board />
+      <div className="game">
+        <div className="game-board">
+          <Board />
+        </div>
+      </div>
     );
   }
 }
