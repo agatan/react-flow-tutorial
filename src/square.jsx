@@ -17,7 +17,7 @@ export class Square extends Component<void, Props, State> {
 
   render() {
     return (
-      <button onClick={() => this.setState({ value: 'X' })}>
+      <button className="square" onClick={() => this.setState({ value: 'X' })}>
         {this.state.value}
       </button>
     );
