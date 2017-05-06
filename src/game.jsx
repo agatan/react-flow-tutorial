@@ -6,6 +6,7 @@ import {Board} from './board';
 type Props = {};
 type State = {
   history: Array<{squares: Array<string | null>}>,
+  stepNumber: number,
   xIsNext: bool,
 };
 
@@ -18,12 +19,13 @@ export class Game extends Component<void, Props, State> {
       history: [
         { squares: Array(9).fill(null), },
       ],
+      stepNumber: 0,
       xIsNext: true,
     };
   }
 
   handleClickSquare(i: number) {
-    const history = this.state.history.slice();
+    const history = this.state.history.slice(0, this.state.stepNumber+1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
     if (squares[i] || calculateWinner(squares)) {
@@ -32,14 +34,32 @@ export class Game extends Component<void, Props, State> {
     squares[i] = this.state.xIsNext ? 'X' : 'O';
     this.setState({
       history: history.concat([{squares: squares}]),
+      stepNumber: this.state.stepNumber + 1,
       xIsNext: !this.state.xIsNext,
     });
   }
 
+  jumpTo(step: number) {
+    this.setState({
+      stepNumber: step,
+      xIsNext: step % 2 == 0,
+    });
+  }
+
   render() {
-    const history = this.state.history.slice();
-    const current = history[history.length - 1];
+    const history = this.state.history;
+    const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
+
+    const moves = history.map((step, move) => {
+      const desc = move ? 'Move #' + move : 'Game start';
+      return (
+        <li key={move}>
+          <a href="#" onClick={() => this.jumpTo(move)}>{desc}</a>
+        </li>
+      );
+    });
+
     let status;
     if (!winner) {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
@@ -54,6 +74,7 @@ export class Game extends Component<void, Props, State> {
         </div>
         <div className="game-info">
           <div>{status}</div>
+          <ol>{moves}</ol>
         </div>
       </div>
     );
