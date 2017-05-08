@@ -5,4 +5,4 @@ import {Game} from './game';
 
 import './index.css';
 
-ReactDOM.render(<Game/>, document.getElementById("app"));
+ReactDOM.render(<Game/>, document.getElementById('app'));
